@@ -89,4 +89,12 @@ class ExamenServiceImplTest {
     }
 
 
+    @Test
+    void testGuardarExamen() {
+        when(repository.guardar(any(Examen.class))).thenReturn(Datos.EXAMEN);
+        Examen examen = service.guardar(Datos.EXAMEN);
+        assertNotNull(examen.getId());
+        assertEquals(8L, examen.getId());
+        assertEquals("Fisica", examen.getNombre());
+    }
 }
