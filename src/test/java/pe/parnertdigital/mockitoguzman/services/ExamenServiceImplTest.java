@@ -58,4 +58,17 @@ class ExamenServiceImplTest {
         assertEquals(5, examen.getPreguntas().size());//cantidad
         assertTrue(examen.getPreguntas().contains("aritmetica"));
     }
+
+    //verificar si  se ejecutaron los metodos en un determinado metodo
+    @Test
+    void testPreguntasExamenVerificar() {
+        when(repository.buscarTodos()).thenReturn(Datos.DATOSSIMULADOS);
+        when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
+        Examen examen = service.buscarExamenPorNombreConPreguntas("Matematicas");
+        assertEquals(5, examen.getPreguntas().size());//cantidad
+        assertTrue(examen.getPreguntas().contains("aritmetica"));
+        verify(repository).buscarTodos();
+        verify(preguntaRespository).buscarPreguntasPorExamenId(5L);
+    }
+
 }
