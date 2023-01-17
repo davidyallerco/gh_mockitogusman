@@ -23,17 +23,16 @@ class ExamenServiceImplTest {
 
      @Mock
      ExamenRepository repository;
-     @Mock
-     ExamenService service;
+
     @InjectMocks
-     PreguntaRespository preguntaRespository;//crear referencia e inyectar los dos de arriba
+    PreguntaRespository preguntaRespository;
+
+     @Mock
+     ExamenService service;//crear referencia e inyectar los dos de arriba
+
 
     @BeforeEach
     void setUp() {
-//         repository = mock(ExamenRepository.class);
-//         preguntaRespository = mock(PreguntaRespository.class);
-//         service = new ExamenServiceImpl(repository, preguntaRespository);
-        //habilitar el uso de anotaciones
         MockitoAnnotations.openMocks(this);
 
     }
