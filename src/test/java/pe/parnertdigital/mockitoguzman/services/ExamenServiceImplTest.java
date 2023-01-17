@@ -1,5 +1,6 @@
 package pe.parnertdigital.mockitoguzman.services;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import pe.parnertdigital.mockitoguzman.models.Examen;
@@ -16,10 +17,16 @@ import static org.mockito.Mockito.*;
 
 class ExamenServiceImplTest {
 
+     ExamenRepository repository;
+     ExamenService service;
+    @BeforeEach
+    void setUp() {
+         repository = mock(ExamenRepository.class);
+         service = new ExamenServiceImpl(repository);
+    }
+
     @Test
     void buscarExamenPorNombreTest() {
-        ExamenRepository repository = mock(ExamenRepository.class);
-        ExamenService service = new ExamenServiceImpl(repository);
         List<Examen> datosSimulados =    Arrays.asList(
                 new Examen(5L, "Matematicas"),
                 new Examen(6L, "Lenguaje"),
@@ -35,8 +42,7 @@ class ExamenServiceImplTest {
 
     @Test
     void buscarExamenPorNombreListaVaciaTest() {
-        ExamenRepository repository = mock(ExamenRepository.class);
-        ExamenService service = new ExamenServiceImpl(repository);
+
         List<Examen> datosSimulados = Collections.emptyList();
 
         when(repository.buscarTodos()).thenReturn(datosSimulados);
