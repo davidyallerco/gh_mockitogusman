@@ -2,7 +2,10 @@ package pe.parnertdigital.mockitoguzman.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import pe.parnertdigital.mockitoguzman.models.Examen;
 import pe.parnertdigital.mockitoguzman.repositories.ExamenRepository;
 import pe.parnertdigital.mockitoguzman.repositories.ExamenRepositoryOtro;
@@ -18,15 +21,21 @@ import static org.mockito.Mockito.*;
 
 class ExamenServiceImplTest {
 
+     @Mock
      ExamenRepository repository;
+     @Mock
      ExamenService service;
+    @InjectMocks
+     PreguntaRespository preguntaRespository;//crear referencia e inyectar los dos de arriba
 
-     PreguntaRespository preguntaRespository;
     @BeforeEach
     void setUp() {
-         repository = mock(ExamenRepository.class);
-         preguntaRespository = mock(PreguntaRespository.class);
-         service = new ExamenServiceImpl(repository, preguntaRespository);
+//         repository = mock(ExamenRepository.class);
+//         preguntaRespository = mock(PreguntaRespository.class);
+//         service = new ExamenServiceImpl(repository, preguntaRespository);
+        //habilitar el uso de anotaciones
+        MockitoAnnotations.openMocks(this);
+
     }
 
     @Test
