@@ -31,14 +31,10 @@ class ExamenServiceImplTest {
     PreguntaRespository preguntaRespository;
 
      @InjectMocks
-     ExamenServiceImpl service;//crear referencia e inyectar los dos de arriba
+     ExamenServiceImpl service;
 
 
-//    @BeforeEach
-//    void setUp() {
-//        MockitoAnnotations.openMocks(this);
-//
-//    }
+
 
     @Test
     void buscarExamenPorNombreTest() {
@@ -55,7 +51,7 @@ class ExamenServiceImplTest {
 
         List<Examen> datosSimulados = Collections.emptyList();
 
-        when(repository.buscarTodos()).thenReturn(Datos.DATOSSIMULADOS);
+        when(repository.buscarTodos()).thenReturn(datosSimulados);
         Optional<Examen> examen = service.buscarExamenPorNombre("Matematicas");
 
         assertFalse(examen.isPresent());

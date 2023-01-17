@@ -4,5 +4,6 @@ import java.util.List;
 
 public interface PreguntaRespository {
     List<String> buscarPreguntasPorExamenId(Long id);
+    void guardarVarias(List<String> preguntas);
 
 }
