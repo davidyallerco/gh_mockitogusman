@@ -96,5 +96,8 @@ class ExamenServiceImplTest {
         assertNotNull(examen.getId());
         assertEquals(8L, examen.getId());
         assertEquals("Fisica", examen.getNombre());
+
+        verify(repository).guardar(any(Examen.class));
+        verify(preguntaRespository).guardarVarias(anyList());
     }
 }
