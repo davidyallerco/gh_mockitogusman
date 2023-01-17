@@ -4,6 +4,7 @@ import pe.parnertdigital.mockitoguzman.models.Examen;
 import pe.parnertdigital.mockitoguzman.repositories.ExamenRepository;
 import pe.parnertdigital.mockitoguzman.repositories.PreguntaRespository;
 
+import java.util.List;
 import java.util.Optional;
 
 public class ExamenServiceImpl implements ExamenService{
@@ -27,6 +28,13 @@ public class ExamenServiceImpl implements ExamenService{
 
     @Override
     public Examen buscarExamenPorNombreConPreguntas(String nombre) {
-        return null;
+        Optional<Examen> examenOptional = buscarExamenPorNombre(nombre);
+        Examen examen = null;
+        if (examenOptional.isPresent()){
+            examen = examenOptional.get();
+            List<String> preguntas = preguntaRespository.buscarPreguntasPorExamenId(examen.getId());
+            examen.setPreguntas(preguntas);
+        }
+        return examen;
     }
 }
