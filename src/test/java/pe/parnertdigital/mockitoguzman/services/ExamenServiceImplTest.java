@@ -17,7 +17,7 @@ class ExamenServiceImplTest {
 
     @Test
     void buscarExamenPorNombre() {
-        ExamenRepository repository = mock(ExamenRepositoryOtro.class);//supuestamente usando la clase
+        ExamenRepository repository = mock(ExamenRepository.class);//supuestamente usando la interface
         ExamenService service = new ExamenServiceImpl(repository);
         List<Examen> datosSimulados =    Arrays.asList(
                 new Examen(5L, "Matematicas"),
