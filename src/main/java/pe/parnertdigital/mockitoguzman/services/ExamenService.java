@@ -2,6 +2,8 @@ package pe.parnertdigital.mockitoguzman.services;
 
 import pe.parnertdigital.mockitoguzman.models.Examen;
 
+import java.util.Optional;
+
 public interface ExamenService {
-    Examen buscarExamenPorNombre(String nombre);
+    Optional<Examen> buscarExamenPorNombre(String nombre);
 }

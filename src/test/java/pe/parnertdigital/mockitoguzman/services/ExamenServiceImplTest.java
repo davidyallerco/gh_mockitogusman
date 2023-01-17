@@ -8,6 +8,7 @@ import pe.parnertdigital.mockitoguzman.repositories.ExamenRepositoryOtro;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -16,18 +17,18 @@ class ExamenServiceImplTest {
 
     @Test
     void buscarExamenPorNombre() {
-        ExamenRepository repository = mock(ExamenRepositoryOtro.class);//pasamos el nombre de la clase o interface a simular
+        ExamenRepository repository = mock(ExamenRepositoryOtro.class);//supuestamente usando la clase
         ExamenService service = new ExamenServiceImpl(repository);
         List<Examen> datosSimulados =    Arrays.asList(
                 new Examen(5L, "Matematicas"),
                 new Examen(6L, "Lenguaje"),
                 new Examen(7L, "Historia")
-        );//incluso lo eliminamos la clase examenRespositoryImpl
-        //cuando se invoque el metodo del repository entonces devolver los datos simulados
+        );
         when(repository.buscarTodos()).thenReturn(datosSimulados);
-        Examen examen = service.buscarExamenPorNombre("Matematicas");
-        assertNotNull(examen);
-        assertEquals(5L, examen.getId());
-        assertEquals("Matematicas", examen.getNombre());
+        Optional<Examen> examen = service.buscarExamenPorNombre("Matematicas");
+
+        assertTrue(examen.isPresent());
+        assertEquals(5L, examen.orElseThrow(null).getId());//null le puse en java 8
+        assertEquals("Matematicas", examen.get().getNombre());//otra forma, tambien lo puedes hacer como arriba
     }
 }
