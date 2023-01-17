@@ -31,12 +31,7 @@ class ExamenServiceImplTest {
 
     @Test
     void buscarExamenPorNombreTest() {
-        List<Examen> datosSimulados =    Arrays.asList(
-                new Examen(5L, "Matematicas"),
-                new Examen(6L, "Lenguaje"),
-                new Examen(7L, "Historia")
-        );
-        when(repository.buscarTodos()).thenReturn(datosSimulados);
+        when(repository.buscarTodos()).thenReturn(Datos.DATOSSIMULADOS);
         Optional<Examen> examen = service.buscarExamenPorNombre("Matematicas");
 
         assertTrue(examen.isPresent());
@@ -49,9 +44,11 @@ class ExamenServiceImplTest {
 
         List<Examen> datosSimulados = Collections.emptyList();
 
-        when(repository.buscarTodos()).thenReturn(datosSimulados);
+        when(repository.buscarTodos()).thenReturn(Datos.DATOSSIMULADOS);
         Optional<Examen> examen = service.buscarExamenPorNombre("Matematicas");
 
         assertFalse(examen.isPresent());
     }
+
+    
 }
