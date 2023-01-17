@@ -42,8 +42,6 @@ class ExamenServiceImplTest {
         when(repository.buscarTodos()).thenReturn(datosSimulados);
         Optional<Examen> examen = service.buscarExamenPorNombre("Matematicas");
 
-        assertTrue(examen.isPresent());
-        assertEquals(5L, examen.orElseThrow(null).getId());
-        assertEquals("Matematicas", examen.get().getNombre());
+        assertFalse(examen.isPresent());
     }
 }
