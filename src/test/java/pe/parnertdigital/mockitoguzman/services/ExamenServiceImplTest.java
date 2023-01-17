@@ -50,5 +50,12 @@ class ExamenServiceImplTest {
         assertFalse(examen.isPresent());
     }
 
-    
+    @Test
+    void testPreguntasExamen() {
+        when(repository.buscarTodos()).thenReturn(Datos.DATOSSIMULADOS);
+        when(preguntaRespository.buscarPreguntasPorExamenId(5L)).thenReturn(Datos.PREGUNTASDATOSSIMULADOS); //(5L)buscando pregunta con id 5 es matematica
+        //...ojo no existe 4L puedes probar y devolvera cero
+        Examen examen = service.buscarExamenPorNombreConPreguntas("Matematicas");
+        assertEquals(5, examen.getPreguntas().size());//cantidad
+    }
 }

@@ -12,4 +12,7 @@ public class Datos {
             new Examen(6L, "Lenguaje"),
             new Examen(7L, "Historia")
     );
+
+   public final static List<String>  PREGUNTASDATOSSIMULADOS = Arrays.asList("aritmetica","integrales",
+           "derivadas","trigonometria","geometria");
 }
