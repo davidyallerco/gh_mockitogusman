@@ -71,4 +71,14 @@ class ExamenServiceImplTest {
         verify(preguntaRespository).buscarPreguntasPorExamenId(5L);
     }
 
+    @Test
+    void testNoExisteExamenVerify() {
+        when(repository.buscarTodos()).thenReturn(Datos.DATOSSIMULADOS);
+        when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
+        Examen examen = service.buscarExamenPorNombreConPreguntas("Matematicasxxxxxxxxxxxxx");
+        assertNull(examen);
+        verify(repository).buscarTodos();
+        verify(preguntaRespository).buscarPreguntasPorExamenId(5L);
+    }
+
 }
