@@ -91,6 +91,8 @@ class ExamenServiceImplTest {
 
     @Test
     void testGuardarExamen() {
+        Examen nuevoExamen = Datos.EXAMEN;
+        nuevoExamen.setPreguntas(Datos.PREGUNTASDATOSSIMULADOS);
         when(repository.guardar(any(Examen.class))).thenReturn(Datos.EXAMEN);
         Examen examen = service.guardar(Datos.EXAMEN);
         assertNotNull(examen.getId());
