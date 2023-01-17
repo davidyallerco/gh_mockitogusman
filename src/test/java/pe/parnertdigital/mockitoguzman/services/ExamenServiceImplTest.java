@@ -2,10 +2,12 @@ package pe.parnertdigital.mockitoguzman.services;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import pe.parnertdigital.mockitoguzman.models.Examen;
 import pe.parnertdigital.mockitoguzman.repositories.ExamenRepository;
 import pe.parnertdigital.mockitoguzman.repositories.ExamenRepositoryOtro;
@@ -19,6 +21,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class ExamenServiceImplTest {
 
      @Mock
@@ -31,11 +34,11 @@ class ExamenServiceImplTest {
      ExamenServiceImpl service;//crear referencia e inyectar los dos de arriba
 
 
-    @BeforeEach
-    void setUp() {
-        MockitoAnnotations.openMocks(this);
-
-    }
+//    @BeforeEach
+//    void setUp() {
+//        MockitoAnnotations.openMocks(this);
+//
+//    }
 
     @Test
     void buscarExamenPorNombreTest() {
@@ -88,5 +91,6 @@ class ExamenServiceImplTest {
         verify(repository).buscarTodos();
         verify(preguntaRespository).buscarPreguntasPorExamenId(5L);
     }
+
 
 }
