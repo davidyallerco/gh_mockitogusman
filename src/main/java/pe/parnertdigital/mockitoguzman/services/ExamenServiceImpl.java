@@ -21,4 +21,9 @@ public class ExamenServiceImpl implements ExamenService{
                .filter(e -> e.getNombre().contains(nombre))
                .findFirst();
     }
+
+    @Override
+    public Examen buscarExamenPorNombreConPreguntas(String nombre) {
+        return null;
+    }
 }
