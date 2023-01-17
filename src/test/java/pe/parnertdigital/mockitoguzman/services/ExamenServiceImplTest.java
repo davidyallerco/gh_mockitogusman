@@ -24,11 +24,11 @@ class ExamenServiceImplTest {
      @Mock
      ExamenRepository repository;
 
-    @InjectMocks
+    @Mock
     PreguntaRespository preguntaRespository;
 
-     @Mock
-     ExamenService service;//crear referencia e inyectar los dos de arriba
+     @InjectMocks
+     ExamenServiceImpl service;//crear referencia e inyectar los dos de arriba
 
 
     @BeforeEach
