@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import pe.parnertdigital.mockitoguzman.models.Examen;
 import pe.parnertdigital.mockitoguzman.repositories.ExamenRepository;
 import pe.parnertdigital.mockitoguzman.repositories.ExamenRepositoryOtro;
+import pe.parnertdigital.mockitoguzman.repositories.PreguntaRespository;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -19,10 +20,13 @@ class ExamenServiceImplTest {
 
      ExamenRepository repository;
      ExamenService service;
+
+     PreguntaRespository preguntaRespository;
     @BeforeEach
     void setUp() {
          repository = mock(ExamenRepository.class);
-         service = new ExamenServiceImpl(repository);
+         preguntaRespository = mock(PreguntaRespository.class);
+         service = new ExamenServiceImpl(repository, preguntaRespository);
     }
 
     @Test
