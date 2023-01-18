@@ -231,7 +231,7 @@ class ExamenServiceImplTest {
             //capturar el argumento
             Long id = invocation.getArgument(0);
             //devolver una lista
-            return id ==5L ? Datos.PREGUNTASDATOSSIMULADOS: null;
+            return id ==5L ? Datos.PREGUNTASDATOSSIMULADOS: Collections.emptyList();
         }).when(preguntaRespository).buscarPreguntasPorExamenId(anyLong());
 
         Examen examen = service.buscarExamenPorNombreConPreguntas("Lenguaje");
