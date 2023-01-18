@@ -142,7 +142,8 @@ class ExamenServiceImplTest {
         verify(repository).buscarTodos();
         //argThat es propia de ArgumenMatcher(forma estatica), aunque tambien lo tiene mockito
         //formas de usar ArgumentMatchers.argThat(), argThat() , Mockito.argThat()
-        verify(preguntaRespository).buscarPreguntasPorExamenId(argThat(arg -> arg.equals(5L)));//validar que el numero que se pasa se 5
+        verify(preguntaRespository).buscarPreguntasPorExamenId(argThat(arg -> arg != null && arg.equals(5L)));//validar que el numero que se pasa se 5
         //si pones 6L sale error porque 6 no pertenece a Matematicas
+        //tambien que sea distinto de null sale ok, si cambias los DATOS NULL no pasara la prueba
     }
 }
