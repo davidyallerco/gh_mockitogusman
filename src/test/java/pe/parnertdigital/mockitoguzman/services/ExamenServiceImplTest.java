@@ -234,8 +234,9 @@ class ExamenServiceImplTest {
             return id ==5L ? Datos.PREGUNTASDATOSSIMULADOS: Collections.emptyList();
         }).when(preguntaRespository).buscarPreguntasPorExamenId(anyLong());
 
-        Examen examen = service.buscarExamenPorNombreConPreguntas("Lenguaje");
+        Examen examen = service.buscarExamenPorNombreConPreguntas("Matematicas");
         assertEquals(5,examen.getPreguntas().size());
+        assertTrue(examen.getPreguntas().contains("geometria"));
         assertEquals(5L, examen.getId());
         assertEquals("Matematicas", examen.getNombre());
 
