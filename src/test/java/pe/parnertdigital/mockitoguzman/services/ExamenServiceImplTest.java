@@ -188,5 +188,23 @@ class ExamenServiceImplTest {
                     " que imprime mockito en caso de que falle el test " +
                      argument +" debe ser un entero positivo";
         }
+
+
+    }//fin de clase
+
+    //capturar el argumento
+
+    @Test
+    void testArgumentCaptor() {
+        when(repository.buscarTodos()).thenReturn(Datos.EXAMENESDATOSSIMULADOS);
+        when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
+        service.buscarExamenPorNombreConPreguntas("Matematicas");
+
+        //se necesita instanciar una clase argumentCaptor
+        ArgumentCaptor<Long> captor = ArgumentCaptor.forClass(Long.class);
+        verify(preguntaRespository).buscarPreguntasPorExamenId(captor.capture());
+
+        assertEquals(5L, captor.getValue());
     }
+
 }
