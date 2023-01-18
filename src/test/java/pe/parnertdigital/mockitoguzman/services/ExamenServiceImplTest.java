@@ -157,6 +157,16 @@ class ExamenServiceImplTest {
         verify(preguntaRespository).buscarPreguntasPorExamenId(argThat(new MiArgsMatchers()));
     }
 
+    @Test
+    void testArgumentosMatcher3() {
+        when(repository.buscarTodos()).thenReturn(Datos.EXAMENES_ID_NEGATIVOS_DATOSSIMULADOS);
+        when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
+        service.buscarExamenPorNombreConPreguntas("Matematicas");
+        verify(repository).buscarTodos();
+        verify(preguntaRespository).buscarPreguntasPorExamenId(argThat((argument)->argument != null && argument > 0));
+        //el problema de lambda es que solo validad mas muestra un mensaje personalizado
+    }
+
     //validaciones personalizadas con una clase
     public static class MiArgsMatchers implements ArgumentMatcher<Long>{
 
