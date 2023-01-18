@@ -94,7 +94,7 @@ class ExamenServiceImplTest {
         Examen nuevoExamen = Datos.EXAMEN;
         nuevoExamen.setPreguntas(Datos.PREGUNTASDATOSSIMULADOS);
         when(repository.guardar(any(Examen.class))).thenReturn(Datos.EXAMEN);
-        Examen examen = service.guardar(Datos.EXAMEN);
+        Examen examen = service.guardar(nuevoExamen);
         assertNotNull(examen.getId());
         assertEquals(8L, examen.getId());
         assertEquals("Fisica", examen.getNombre());
