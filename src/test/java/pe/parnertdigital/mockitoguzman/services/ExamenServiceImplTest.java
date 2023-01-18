@@ -93,6 +93,7 @@ class ExamenServiceImplTest {
 
     @Test
     void testGuardarExamen() {
+        //Given (dado un entorno de prueba)
         Examen nuevoExamen = Datos.EXAMEN;
         nuevoExamen.setPreguntas(Datos.PREGUNTASDATOSSIMULADOS);
 
@@ -107,8 +108,10 @@ class ExamenServiceImplTest {
                 return examen;
             }
         });
-
+        //When (cuando ejecutamos el metodo que queremos probar)
         Examen examen = service.guardar(nuevoExamen);
+
+        //then (entonces validamos)
         assertNotNull(examen.getId());
         assertEquals(8L, examen.getId());
         assertEquals("Fisica", examen.getNombre());
