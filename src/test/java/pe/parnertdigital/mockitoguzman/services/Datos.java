@@ -12,9 +12,16 @@ public class Datos {
             new Examen(6L, "Lenguaje"),
             new Examen(7L, "Historia")
     );
+    public final static List<Examen> EXAMENES_ID_NULL =    Arrays.asList(
+            new Examen(null, "Matematicas"),
+            new Examen(null, "Lenguaje"),
+            new Examen(null, "Historia")
+    );
 
    public final static List<String>  PREGUNTASDATOSSIMULADOS = Arrays.asList("aritmetica","integrales",
            "derivadas","trigonometria","geometria");
 
    public final static Examen EXAMEN = new Examen(null, "Fisica");//el id debe ser automatica
+
+
 }

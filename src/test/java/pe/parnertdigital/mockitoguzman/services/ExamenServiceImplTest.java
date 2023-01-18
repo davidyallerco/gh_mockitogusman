@@ -1,6 +1,7 @@
 package pe.parnertdigital.mockitoguzman.services;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,10 +16,7 @@ import pe.parnertdigital.mockitoguzman.repositories.ExamenRepository;
 import pe.parnertdigital.mockitoguzman.repositories.ExamenRepositoryOtro;
 import pe.parnertdigital.mockitoguzman.repositories.PreguntaRespository;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -119,4 +117,20 @@ class ExamenServiceImplTest {
         verify(repository).guardar(any(Examen.class));
         verify(preguntaRespository).guardarVarias(anyList());
     }
+
+
+    @Test
+    @Disabled
+    void testManejoException() {
+        when(repository.buscarTodos()).thenReturn(Datos.EXAMENES_ID_NULL);
+        when(preguntaRespository.buscarPreguntasPorExamenId(null)).thenThrow(IllegalArgumentException.class);
+        Exception exception = assertThrows(IllegalArgumentException.class, ()->{
+            service.buscarExamenPorNombreConPreguntas("Matematicas");
+        });
+        assertEquals(IllegalArgumentException.class, exception.getClass());
+        verify(repository).buscarTodos();
+        verify(preguntaRespository).buscarPreguntasPorExamenId(null);
+    }
+
+
 }
