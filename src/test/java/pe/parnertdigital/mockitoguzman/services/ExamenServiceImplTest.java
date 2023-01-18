@@ -197,7 +197,7 @@ class ExamenServiceImplTest {
     @Test
     void testArgumentCaptor() {
         when(repository.buscarTodos()).thenReturn(Datos.EXAMENESDATOSSIMULADOS);
-        when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
+        //when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
         service.buscarExamenPorNombreConPreguntas("Matematicas");
 
         //se necesita instanciar una clase argumentCaptor
