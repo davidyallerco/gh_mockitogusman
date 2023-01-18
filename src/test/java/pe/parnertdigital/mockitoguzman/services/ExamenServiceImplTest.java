@@ -220,4 +220,24 @@ class ExamenServiceImplTest {
             service.guardar(examen);
         });
     }
+
+    @Test
+    void testDoAnswer() {
+        when(repository.buscarTodos()).thenReturn(Datos.EXAMENESDATOSSIMULADOS);
+        //when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
+
+        //capturar el argumento
+        doAnswer(invocation -> {
+            //capturar el argumento
+            Long id = invocation.getArgument(0);
+            //devolver una lista
+            return id ==5L ? Datos.PREGUNTASDATOSSIMULADOS: null;
+        }).when(preguntaRespository).buscarPreguntasPorExamenId(anyLong());
+
+        Examen examen = service.buscarExamenPorNombreConPreguntas("Matematicas");
+        assertEquals(5L, examen.getId());
+        assertEquals("Matematicas", examen.getNombre());
+        assertEquals(5,examen.getPreguntas().size());
+
+    }
 }
