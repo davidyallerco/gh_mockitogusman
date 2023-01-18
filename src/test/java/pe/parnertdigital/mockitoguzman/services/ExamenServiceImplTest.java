@@ -123,7 +123,7 @@ class ExamenServiceImplTest {
     @Disabled
     void testManejoException() {
         when(repository.buscarTodos()).thenReturn(Datos.EXAMENES_ID_NULL);
-        when(preguntaRespository.buscarPreguntasPorExamenId(null)).thenThrow(IllegalArgumentException.class);
+        when(preguntaRespository.buscarPreguntasPorExamenId(isNull())).thenThrow(IllegalArgumentException.class);
         Exception exception = assertThrows(IllegalArgumentException.class, ()->{
             service.buscarExamenPorNombreConPreguntas("Matematicas");
         });
