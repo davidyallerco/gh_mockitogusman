@@ -146,4 +146,37 @@ class ExamenServiceImplTest {
         //si pones 6L sale error porque 6 no pertenece a Matematicas
         //tambien que sea distinto de null sale ok, si cambias los DATOS NULL no pasara la prueba
     }
+
+    //igual al de arriba
+    @Test
+    void testArgumentosMatcher2() {
+        when(repository.buscarTodos()).thenReturn(Datos.EXAMENES_ID_NEGATIVOS_DATOSSIMULADOS);
+        when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
+        service.buscarExamenPorNombreConPreguntas("Matematicas");
+        verify(repository).buscarTodos();
+        verify(preguntaRespository).buscarPreguntasPorExamenId(argThat(new MiArgsMatchers()));
+    }
+
+    //validaciones personalizadas con una clase
+    public static class MiArgsMatchers implements ArgumentMatcher<Long>{
+
+        private Long argument;//sera usado en metodo toString, argumento es un numero
+        @Override
+        public boolean matches(Long argument) {
+            this.argument = argument;
+            //validamos que sea distinto de null y mayor a cero
+            return argument != null && argument > 0;
+        }
+
+
+
+        //se puede personalizar el mensaje de error
+
+        @Override
+        public String toString() {
+            return "es par un mensaje personalizado de error " +
+                    " que imprime mockito en caso de que falle el test " +
+                     argument +" debe ser un entero positivo";
+        }
+    }
 }
