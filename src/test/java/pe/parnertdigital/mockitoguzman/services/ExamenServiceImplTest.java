@@ -209,4 +209,15 @@ class ExamenServiceImplTest {
         assertEquals(5L, captor.getValue());
     }
 
+
+    @Test
+    void testDoThrow() {
+        Examen examen = Datos.EXAMEN;
+        examen.setPreguntas(Datos.PREGUNTASDATOSSIMULADOS);
+        //hacer algo cuando del objeto repository ....
+        doThrow(IllegalArgumentException.class).when(preguntaRespository).guardarVarias(anyList());
+        assertThrows(IllegalArgumentException.class, ()->{
+            service.guardar(examen);
+        });
+    }
 }
