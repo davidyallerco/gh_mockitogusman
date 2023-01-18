@@ -17,6 +17,11 @@ public class Datos {
             new Examen(null, "Lenguaje"),
             new Examen(null, "Historia")
     );
+    public final static List<Examen> EXAMENESDATOSSIMULADOS =    Arrays.asList(
+            new Examen(5L, "Matematicas"),
+            new Examen(6L, "Lenguaje"),
+            new Examen(7L, "Historia")
+    );
 
    public final static List<String>  PREGUNTASDATOSSIMULADOS = Arrays.asList("aritmetica","integrales",
            "derivadas","trigonometria","geometria");

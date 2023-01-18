@@ -4,10 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.*;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.stubbing.Answer;
@@ -132,4 +129,20 @@ class ExamenServiceImplTest {
     }
 
 
+    //validaciones personalizadas
+
+    @Test
+    void testArgumentosMatcher() {
+        when(repository.buscarTodos()).thenReturn(Datos.EXAMENESDATOSSIMULADOS);
+        when(preguntaRespository.buscarPreguntasPorExamenId(anyLong())).thenReturn(Datos.PREGUNTASDATOSSIMULADOS);
+        //llamamos al service
+        service.buscarExamenPorNombreConPreguntas("Matematicas");
+
+        //verificamos
+        verify(repository).buscarTodos();
+        //argThat es propia de ArgumenMatcher(forma estatica), aunque tambien lo tiene mockito
+        //formas de usar ArgumentMatchers.argThat(), argThat() , Mockito.argThat()
+        verify(preguntaRespository).buscarPreguntasPorExamenId(argThat(arg -> arg.equals(5L)));//validar que el numero que se pasa se 5
+        //si pones 6L sale error porque 6 no pertenece a Matematicas
+    }
 }
