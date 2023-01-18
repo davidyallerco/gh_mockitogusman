@@ -120,7 +120,6 @@ class ExamenServiceImplTest {
 
 
     @Test
-    @Disabled
     void testManejoException() {
         when(repository.buscarTodos()).thenReturn(Datos.EXAMENES_ID_NULL);
         when(preguntaRespository.buscarPreguntasPorExamenId(isNull())).thenThrow(IllegalArgumentException.class);
