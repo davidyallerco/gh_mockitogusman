@@ -129,7 +129,7 @@ class ExamenServiceImplTest {
         });
         assertEquals(IllegalArgumentException.class, exception.getClass());
         verify(repository).buscarTodos();
-        verify(preguntaRespository).buscarPreguntasPorExamenId(null);
+        verify(preguntaRespository).buscarPreguntasPorExamenId(isNull());
     }
 
 
