@@ -240,5 +240,7 @@ class ExamenServiceImplTest {
         assertEquals(5L, examen.getId());
         assertEquals("Matematicas", examen.getNombre());
 
+        verify(preguntaRespository).buscarPreguntasPorExamenId(anyLong());
+
     }
 }
