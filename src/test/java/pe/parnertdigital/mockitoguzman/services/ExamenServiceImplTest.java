@@ -31,6 +31,8 @@ class ExamenServiceImplTest {
      ExamenServiceImpl service;
 
 
+     @Captor
+     ArgumentCaptor<Long> captor;
 
 
     @Test
@@ -201,8 +203,8 @@ class ExamenServiceImplTest {
         service.buscarExamenPorNombreConPreguntas("Matematicas");
 
         //se necesita instanciar una clase argumentCaptor
-        ArgumentCaptor<Long> captor = ArgumentCaptor.forClass(Long.class);
-        verify(preguntaRespository).buscarPreguntasPorExamenId(captor.capture());
+        //ArgumentCaptor<Long> captor = ArgumentCaptor.forClass(Long.class);//lo haremos con anotaciones
+        verify(preguntaRespository).buscarPreguntasPorExamenId(captor.capture());//usando la anotacion @Captor
 
         assertEquals(5L, captor.getValue());
     }
